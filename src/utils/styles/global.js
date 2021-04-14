@@ -15,6 +15,7 @@ export default createGlobalStyle`
       --text-light: ${(props) => props.theme.colors.lightGrey};
       //Button
       --primary: ${(props) => props.theme.colors.blue};
+      --primary-light: ${(props) => props.theme.colors.lightBlue};
       //Shades
       --white: ${(props) => props.theme.colors.white};
     }
