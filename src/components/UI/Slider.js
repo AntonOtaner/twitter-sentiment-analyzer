@@ -37,11 +37,14 @@ const StyledValue = styled.div`
   border: 1px solid var(--border);
   border-radius: 8px;
   top: 0px;
-  left: ${({ leftValue }) => leftValue && leftValue}%;
+  left: ${({ leftValue }) => leftValue && leftValue};
+  transform: translateX(-50%);
 `;
 
+//With the help of https://css-tricks.com/value-bubbles-for-range-inputs/
+
 function Slider({ min, max, value, updateValue }) {
-  const [leftValue, setLeftValue] = useState(0);
+  const [leftValue, setLeftValue] = useState("0%");
 
   const calculateLeftValue = useCallback(
     (e) => {
@@ -52,7 +55,8 @@ function Slider({ min, max, value, updateValue }) {
         val = value;
       }
       let newVal = ((val - min) * 100) / (max - min);
-      setLeftValue(newVal - 0.05 * newVal - 6);
+      setLeftValue(`calc(${newVal}% + (${8 - newVal * 0.15}px))`);
+      //setLeftValue(newVal - 0.05 * newVal - 6);
     },
     [max, min, value]
   );

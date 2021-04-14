@@ -8,6 +8,14 @@ const StyledTitle = styled.h1`
   text-align: ${({ align }) => align && align};
 `;
 
+const StyledHeader = styled.h2`
+  font-weight: 500;
+  font-size: 1.2rem;
+  color: var(--text);
+  margin: ${({ margin }) => margin && margin};
+  text-align: ${({ align }) => align && align};
+`;
+
 const StyledLabel = styled.label`
   font-weight: 500;
   font-size: 1rem;
@@ -32,15 +40,27 @@ const StyledBodyText = styled.p`
   text-align: ${({ align }) => align && align};
 `;
 
+const StyledLink = styled.a`
+  font-weight: 300;
+  font-size: 0.8rem;
+  color: var(--text);
+  margin: ${({ margin }) => margin && margin};
+  text-align: ${({ align }) => align && align};
+`;
+
 function Text(props) {
   if (props.type === "title") {
     return <StyledTitle {...props}>{props.children}</StyledTitle>;
+  } else if (props.type === "header") {
+    return <StyledHeader {...props}>{props.children}</StyledHeader>;
   } else if (props.type === "label") {
     return <StyledLabel {...props}>{props.children}</StyledLabel>;
   } else if (props.type === "bold") {
     return <StyledBoldText {...props}>{props.children}</StyledBoldText>;
   } else if (props.type === "body") {
     return <StyledBodyText {...props}>{props.children}</StyledBodyText>;
+  } else if (props.type === "link") {
+    return <StyledLink {...props}>{props.children}</StyledLink>;
   }
 }
 
