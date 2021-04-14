@@ -1,4 +1,5 @@
 //Packages
+import { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 
 //Components
@@ -12,18 +13,22 @@ import bgImage from "../assets/images/gradient-background.jpeg";
 const Container = styled.div`
   display: flex;
   flex: 1;
-  overflow: hidden;
+  overflow: ${({ isMobile }) => (isMobile ? "visible" : "hidden")};
   position: relative;
   justify-content: space-between;
-  gap: 100px;
+  flex-direction: ${({ isMobile }) => (isMobile ? "column" : "row")};
+  gap: ${({ isMobile }) => (isMobile ? "0px" : "100px")};
 `;
 
-const Background = styled.img`
+const Background = styled.div`
+  background: url(${bgImage}) no-repeat center center fixed;
+  background-size: cover;
   position: absolute;
   z-index: -1;
-  height: 100%;
+  width: 100%;
+  height: ${({ height }) => height && height}px;
   filter: blur(20px);
-  transform: scale(1.1);
+  transform: ${({ isMobile }) => !isMobile && "scale(1.1)"};
 `;
 
 const Left = styled.div`
@@ -40,9 +45,28 @@ const Right = styled.div`
 `;
 
 function Main() {
+  const [width, setWidth] = useState(window.innerWidth);
+  const [height, setHeight] = useState(window.innerHeight);
+  const containerRef = useRef(null);
+
+  function handleWindowSizeChange() {
+    setWidth(window.innerWidth);
+    setHeight(containerRef.current.clientHeight);
+  }
+
+  useEffect(() => {
+    handleWindowSizeChange();
+    window.addEventListener("resize", handleWindowSizeChange);
+    return () => {
+      window.removeEventListener("resize", handleWindowSizeChange);
+    };
+  }, []);
+
+  let isMobile = width <= 1024;
+
   return (
-    <Container>
-      <Background src={bgImage} />
+    <Container isMobile={isMobile} ref={containerRef}>
+      <Background isMobile={isMobile} height={height} />
       <Left>
         <DataInputs></DataInputs>
       </Left>

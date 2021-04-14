@@ -6,7 +6,7 @@ import Text from "../UI/Text";
 import CombinedRating from "../UI/CombinedRating";
 
 const Container = styled.div`
-  flex: 1;
+  height: 170px;
   background-color: rgba(255, 255, 255, 0.5);
   backdrop-filter: blur(5px);
 `;

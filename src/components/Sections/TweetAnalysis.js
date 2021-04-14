@@ -7,7 +7,7 @@ import Tweet from "../UI/Tweet";
 import Rating from "../UI/Rating";
 
 const Container = styled.div`
-  flex: 3;
+  flex: 1;
   background-color: rgba(255, 255, 255, 0.5);
   backdrop-filter: blur(5px);
 `;
