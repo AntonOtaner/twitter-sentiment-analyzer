@@ -1,19 +1,28 @@
 //Packages
 import styled from "styled-components";
+import { useContext } from "react";
 
 //Components
 import Text from "../UI/Text";
 import Tweet from "../UI/Tweet";
 import Rating from "../UI/Rating";
 
+import { Context } from "../Layout/Context/Context";
+
 const Container = styled.div`
-  flex: 1;
+  height: ${({ isMobile, height }) =>
+    !isMobile && height && `calc(${height}px - 70px - 170px - 70px)`};
   background-color: rgba(255, 255, 255, 0.5);
   backdrop-filter: blur(5px);
 `;
 
 const TweetContainer = styled.div`
-  padding-left: 30px;
+  height: ${({ isMobile, height }) =>
+    !isMobile &&
+    height &&
+    `calc(${height}px - 70px - 170px - 70px - 29px - 20px - 35px)`};
+  padding-left: ${({ isMobile }) => (!isMobile ? "30px" : "10px")};
+  overflow-y: ${({ isMobile }) => (!isMobile ? "scroll" : "hidden")};
 `;
 
 const TweetBlock = styled.div`
@@ -23,32 +32,39 @@ const TweetBlock = styled.div`
   margin-bottom: 20px;
 `;
 
-function TweetAnalysis() {
+function TweetAnalysis({ isMobile, height }) {
+  const data = useContext(Context);
+
   return (
-    <Container>
+    <Container isMobile={isMobile} height={height}>
       <Text type="header" margin="20px 30px 35px">
         Tweet Analysis
       </Text>
 
-      <TweetContainer>
-        <TweetBlock>
-          <Tweet width="67%" link="https://google.com">
-            Tweet text ...
-          </Tweet>
-          <Rating type={1} width="20%" text="Positive" />
-        </TweetBlock>
-        <TweetBlock>
-          <Tweet width="67%" link="https://google.com">
-            Tweet text ...
-          </Tweet>
-          <Rating type={1} width="20%" text="Positive" />
-        </TweetBlock>
-        <TweetBlock>
-          <Tweet width="67%" link="https://google.com">
-            Tweet text ...
-          </Tweet>
-          <Rating type={1} width="20%" text="Positive" />
-        </TweetBlock>
+      <TweetContainer isMobile={isMobile} height={height}>
+        {data.tweets.tweets.map((tweet, key) => (
+          <TweetBlock key={key}>
+            <Tweet width={!isMobile ? "67%" : "60%"} link={tweet.link}>
+              {tweet.text}
+            </Tweet>
+            <Rating
+              type={
+                tweet.analysis.classification === "positive"
+                  ? 1
+                  : tweet.analysis.classification === "negative"
+                  ? 3
+                  : 2
+              }
+              width={!isMobile ? "20%" : "25%"}
+              text={
+                tweet.analysis.classification +
+                "(" +
+                Math.round(tweet.analysis.confidence) +
+                ")"
+              }
+            />
+          </TweetBlock>
+        ))}
       </TweetContainer>
     </Container>
   );

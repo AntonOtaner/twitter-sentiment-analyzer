@@ -1,11 +1,14 @@
 //Packages
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useContext, useRef } from "react";
 import styled from "styled-components";
 
 //Components
 import DataInputs from "../components/Sections/DataInputs";
 import GeneralAnalysis from "../components/Sections/GeneralAnalysis";
 import TweetAnalysis from "../components/Sections/TweetAnalysis";
+import ErrorMessage from "../components/Sections/ErrorMessage";
+
+import { Context } from "../components/Layout/Context/Context";
 
 //Image
 import bgImage from "../assets/images/gradient-background.jpeg";
@@ -44,10 +47,33 @@ const Right = styled.div`
   padding-top: 70px;
 `;
 
+//TODOS:
+//FIX 0 tweets on server DONE
+//FIX 0 tweets on frontend DONE
+//Show better loading time status text DONE
+//Make form so enter works DONE
+//Change minimum and maximum values and change keywords text DONE
+//Better error handling DONE
+//Fix confidence accuracy DONE
+
+//Add comments to server
+//Add comments to front end
+//Deploy front end
+//Deploy backend
+
+//Target (8 AM)
+
+// Documentation
+
 function Main() {
+  const data = useContext(Context);
+
   const [width, setWidth] = useState(window.innerWidth);
   const [height, setHeight] = useState(window.innerHeight);
   const containerRef = useRef(null);
+  const generalAnalysisRef = useRef(null);
+
+  let isMobile = width <= 1024;
 
   function handleWindowSizeChange() {
     setWidth(window.innerWidth);
@@ -62,7 +88,14 @@ function Main() {
     };
   }, []);
 
-  let isMobile = width <= 1024;
+  useEffect(() => {
+    handleWindowSizeChange();
+    if (data.tweets && generalAnalysisRef.current && isMobile) {
+      generalAnalysisRef.current.scrollIntoView({
+        behavior: "smooth",
+      });
+    }
+  }, [data.tweets, generalAnalysisRef, isMobile]);
 
   return (
     <Container isMobile={isMobile} ref={containerRef}>
@@ -71,8 +104,18 @@ function Main() {
         <DataInputs></DataInputs>
       </Left>
       <Right>
-        <GeneralAnalysis></GeneralAnalysis>
-        <TweetAnalysis></TweetAnalysis>
+        {data.tweets &&
+          (data.tweets.tweets && data.tweets.tweets.length > 0 ? (
+            <>
+              <GeneralAnalysis ref={generalAnalysisRef}></GeneralAnalysis>
+              <TweetAnalysis
+                isMobile={isMobile}
+                height={height}
+              ></TweetAnalysis>
+            </>
+          ) : (
+            <ErrorMessage />
+          ))}
       </Right>
     </Container>
   );

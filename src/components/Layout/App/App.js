@@ -6,6 +6,8 @@ import { theme } from "../../../utils/styles/theme";
 
 import Main from "../../../routes/Main";
 
+import { Provider } from "../Context/Context";
+
 //General wrapper around application
 const Wrapper = styled.div`
   display: flex;
@@ -21,8 +23,10 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <Wrapper>
-        <Main />
-        <GlobalStyles />
+        <Provider>
+          <Main />
+          <GlobalStyles />
+        </Provider>
       </Wrapper>
     </ThemeProvider>
   );

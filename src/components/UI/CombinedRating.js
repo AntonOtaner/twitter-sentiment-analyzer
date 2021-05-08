@@ -9,9 +9,15 @@ const Container = styled.div`
 function CombinedRating({ positiveVal, neutralVal, negativeVal }) {
   return (
     <Container>
-      <Rating type={1} width={`${positiveVal}%`} text={`${positiveVal}%`} />
-      <Rating type={2} width={`${neutralVal}%`} text={`${neutralVal}%`} />
-      <Rating type={3} width={`${negativeVal}%`} text={`${negativeVal}%`} />
+      {positiveVal > 0 && (
+        <Rating type={1} width={`${positiveVal}%`} text={`${positiveVal}%`} />
+      )}
+      {neutralVal > 0 && (
+        <Rating type={2} width={`${neutralVal}%`} text={`${neutralVal}%`} />
+      )}
+      {negativeVal > 0 && (
+        <Rating type={3} width={`${negativeVal}%`} text={`${negativeVal}%`} />
+      )}
     </Container>
   );
 }

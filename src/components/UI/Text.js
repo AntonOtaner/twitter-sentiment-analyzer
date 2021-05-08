@@ -40,10 +40,26 @@ const StyledBodyText = styled.p`
   text-align: ${({ align }) => align && align};
 `;
 
+const StyledInfoText = styled.p`
+  font-weight: 300;
+  font-size: 0.8rem;
+  color: var(--text-light);
+  margin: ${({ margin }) => margin && margin};
+  text-align: ${({ align }) => align && align};
+`;
+
 const StyledLink = styled.a`
   font-weight: 300;
   font-size: 0.8rem;
   color: var(--text);
+  margin: ${({ margin }) => margin && margin};
+  text-align: ${({ align }) => align && align};
+`;
+
+const StyledError = styled.p`
+  font-weight: 300;
+  font-size: 0.9rem;
+  color: var(--negative);
   margin: ${({ margin }) => margin && margin};
   text-align: ${({ align }) => align && align};
 `;
@@ -59,8 +75,12 @@ function Text(props) {
     return <StyledBoldText {...props}>{props.children}</StyledBoldText>;
   } else if (props.type === "body") {
     return <StyledBodyText {...props}>{props.children}</StyledBodyText>;
+  } else if (props.type === "info") {
+    return <StyledInfoText {...props}>{props.children}</StyledInfoText>;
   } else if (props.type === "link") {
     return <StyledLink {...props}>{props.children}</StyledLink>;
+  } else if (props.type === "error") {
+    return <StyledError {...props}>{props.children}</StyledError>;
   }
 }
 

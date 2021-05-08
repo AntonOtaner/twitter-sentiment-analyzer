@@ -12,7 +12,8 @@ export default createGlobalStyle`
       --negative: ${(props) => props.theme.colors.red};
       //Text
       --text: ${(props) => props.theme.colors.black};
-      --text-light: ${(props) => props.theme.colors.lightGrey};
+      --text-light: ${(props) => props.theme.colors.darkGrey};
+      --text-lightest: ${(props) => props.theme.colors.grey};
       //Button
       --primary: ${(props) => props.theme.colors.blue};
       --primary-light: ${(props) => props.theme.colors.lightBlue};
@@ -29,5 +30,20 @@ export default createGlobalStyle`
       @media (max-width: 768px) {
         font-size: 85%;
       }
+    }
+
+    /* width */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+      background: var(--white);
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+      background: var(--border);
     }
 `;

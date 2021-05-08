@@ -13,6 +13,7 @@ const StyledButton = styled.button`
   background-color: var(--primary);
   color: var(--white);
   cursor: pointer;
+  display: block;
   &:disabled {
     cursor: default;
     filter: brightness(65%) !important;

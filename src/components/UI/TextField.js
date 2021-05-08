@@ -12,13 +12,13 @@ const StyledTextField = styled.input`
   transition: 0.1s all ease;
   opacity: 0.8;
   ::placeholder {
-    color: var(--text-light);
+    color: var(--text-lightest);
   }
   &:focus {
     outline: none;
     opacity: 1;
     ::placeholder {
-      color: var(--text-light);
+      color: var(--text-lightest);
     }
   }
 `;
