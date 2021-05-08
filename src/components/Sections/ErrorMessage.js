@@ -4,7 +4,6 @@ import React, { useContext } from "react";
 
 //Components
 import Text from "../UI/Text";
-import CombinedRating from "../UI/CombinedRating";
 
 import { Context } from "../Layout/Context/Context";
 
