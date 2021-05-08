@@ -1,5 +1,12 @@
+// Anton Otaner , 1930028
+// Friday , May 7
+// R. Vincent , instructor
+// Final Project
+
+//Packages
 import styled from "styled-components";
 
+//Styling for a title
 const StyledTitle = styled.h1`
   font-weight: 500;
   font-size: 1.4rem;
@@ -8,6 +15,7 @@ const StyledTitle = styled.h1`
   text-align: ${({ align }) => align && align};
 `;
 
+//Styling for a title
 const StyledHeader = styled.h2`
   font-weight: 500;
   font-size: 1.2rem;
@@ -16,6 +24,7 @@ const StyledHeader = styled.h2`
   text-align: ${({ align }) => align && align};
 `;
 
+//Styling for a label
 const StyledLabel = styled.label`
   font-weight: 500;
   font-size: 1rem;
@@ -24,6 +33,7 @@ const StyledLabel = styled.label`
   text-align: ${({ align }) => align && align};
 `;
 
+//Styling for bold text
 const StyledBoldText = styled.p`
   font-weight: 500;
   font-size: 0.9rem;
@@ -32,6 +42,7 @@ const StyledBoldText = styled.p`
   text-align: ${({ align }) => align && align};
 `;
 
+//Styling for body text
 const StyledBodyText = styled.p`
   font-weight: 300;
   font-size: 0.9rem;
@@ -40,6 +51,7 @@ const StyledBodyText = styled.p`
   text-align: ${({ align }) => align && align};
 `;
 
+//Styling for informative text
 const StyledInfoText = styled.p`
   font-weight: 300;
   font-size: 0.8rem;
@@ -48,6 +60,7 @@ const StyledInfoText = styled.p`
   text-align: ${({ align }) => align && align};
 `;
 
+//Styling for a link
 const StyledLink = styled.a`
   font-weight: 300;
   font-size: 0.8rem;
@@ -56,6 +69,7 @@ const StyledLink = styled.a`
   text-align: ${({ align }) => align && align};
 `;
 
+//Styling for an error message
 const StyledError = styled.p`
   font-weight: 300;
   font-size: 0.9rem;
@@ -64,7 +78,9 @@ const StyledError = styled.p`
   text-align: ${({ align }) => align && align};
 `;
 
+//Component for different text styles
 function Text(props) {
+  //Load proper text style based on "type" input
   if (props.type === "title") {
     return <StyledTitle {...props}>{props.children}</StyledTitle>;
   } else if (props.type === "header") {

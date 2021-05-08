@@ -1,6 +1,15 @@
+// Anton Otaner , 1930028
+// Friday , May 7
+// R. Vincent , instructor
+// Final Project
+
+//Packages
 import styled from "styled-components";
+
+//Components
 import Text from "./Text";
 
+//Styling of checkbox
 const StyledCheckbox = styled.input`
   position: absolute;
   appearance: none;
@@ -15,6 +24,7 @@ const StyledCheckbox = styled.input`
   margin: auto;
 `;
 
+//Styling of checkmark
 const Checkmark = styled.span`
   position: absolute;
   height: 12px;
@@ -29,23 +39,27 @@ const Checkmark = styled.span`
   top: 4px;
 `;
 
+//Styling of checkbox container
 const CheckboxContainer = styled.div`
   position: relative;
   width: 20px;
   height: 20px;
 
+  // Styled of checkmark based on if checkbox is checked
   & ${StyledCheckbox}:checked + ${Checkmark} {
     opacity: 1;
     transform: scale(1);
   }
 `;
 
+// Styled of general container
 const Container = styled.div`
   display: flex;
   align-items: center;
   margin: 0 0 15px;
 `;
 
+// Checkbox component requiring the type of checkbox (radio or checkbox), the onClick function, and the label of the checkbox
 function Checkbox({ type, onClick, label, ...rest }) {
   return (
     <Container>

@@ -1,11 +1,19 @@
+// Anton Otaner , 1930028
+// Friday , May 7
+// R. Vincent , instructor
+// Final Project
+
+//Packages
 import styled, { ThemeProvider } from "styled-components";
 
 //Styles
 import GlobalStyles from "../../../utils/styles/global";
 import { theme } from "../../../utils/styles/theme";
 
+//Routes
 import Main from "../../../routes/Main";
 
+//Data Provider
 import { Provider } from "../Context/Context";
 
 //General wrapper around application

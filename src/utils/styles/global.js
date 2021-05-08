@@ -1,3 +1,9 @@
+// Anton Otaner , 1930028
+// Friday , May 7
+// R. Vincent , instructor
+// Final Project
+
+//Packages
 import { createGlobalStyle } from "styled-components";
 
 //styles to be applied through the whole app
@@ -21,17 +27,20 @@ export default createGlobalStyle`
       --white: ${(props) => props.theme.colors.white};
     }
 
+    /* to not drag images */
     img{
       user-drag: none; 
       user-select: none;
     }
 
+    /* to make fonts smaller on mobile */
     html{
       @media (max-width: 768px) {
         font-size: 85%;
       }
     }
 
+    /* Scrollbar styles */
     /* width */
     ::-webkit-scrollbar {
       width: 10px;

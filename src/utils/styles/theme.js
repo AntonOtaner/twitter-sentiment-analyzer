@@ -1,3 +1,8 @@
+// Anton Otaner , 1930028
+// Friday , May 7
+// R. Vincent , instructor
+// Final Project
+
 //colors and screen sizes
 export const theme = {
   colors: {

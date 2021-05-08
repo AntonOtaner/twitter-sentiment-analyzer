@@ -1,13 +1,22 @@
-import styled from "styled-components";
-import { useState, useEffect, useCallback } from "react";
+// Anton Otaner , 1930028
+// Friday , May 7
+// R. Vincent , instructor
+// Final Project
 
+//Packages
+import { useState, useEffect, useCallback } from "react";
+import styled from "styled-components";
+
+//Components
 import Text from "../UI/Text";
 
+// Styles for container
 const Container = styled.div`
   position: relative;
   height: 60px;
 `;
 
+// Styles for slider
 const StyledSlider = styled.input`
   position: absolute;
   bottom: 10px;
@@ -26,6 +35,7 @@ const StyledSlider = styled.input`
   }
 `;
 
+// Styles for value above slider with help of https://css-tricks.com/value-bubbles-for-range-inputs/
 const StyledValue = styled.div`
   position: absolute;
   display: flex;
@@ -41,11 +51,11 @@ const StyledValue = styled.div`
   transform: translateX(-50%);
 `;
 
-//With the help of https://css-tricks.com/value-bubbles-for-range-inputs/
-
+// Slider component requiring minimum and maximum valye, value of slider, and update value function
 function Slider({ min, max, value, updateValue }) {
-  const [leftValue, setLeftValue] = useState("0%");
+  const [leftValue, setLeftValue] = useState("0%"); // left property for value above slider
 
+  // Callback to calculate left value. useCallback is being used so tha the function is not regenerated on every update
   const calculateLeftValue = useCallback(
     (e) => {
       let val = 0;
@@ -56,11 +66,11 @@ function Slider({ min, max, value, updateValue }) {
       }
       let newVal = ((val - min) * 100) / (max - min);
       setLeftValue(`calc(${newVal}% + (${8 - newVal * 0.15}px))`);
-      //setLeftValue(newVal - 0.05 * newVal - 6);
     },
     [max, min, value]
   );
 
+  //Update left value on start
   useEffect(() => {
     calculateLeftValue();
   }, [calculateLeftValue]);
@@ -76,8 +86,8 @@ function Slider({ min, max, value, updateValue }) {
         max={max}
         value={value}
         onChange={(e) => {
-          updateValue(e.target.value);
-          calculateLeftValue(e);
+          updateValue(e.target.value); //update slider value
+          calculateLeftValue(e); // recompute left property of value above slider
         }}
       />
     </Container>

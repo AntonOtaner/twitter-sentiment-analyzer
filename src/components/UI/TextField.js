@@ -1,5 +1,12 @@
+// Anton Otaner , 1930028
+// Friday , May 7
+// R. Vincent , instructor
+// Final Project
+
+//Packages
 import styled from "styled-components";
 
+// Styling for textfield
 const StyledTextField = styled.input`
   font-family: "Poppins", sans-serif;
   font-size: 0.9rem;
@@ -23,6 +30,7 @@ const StyledTextField = styled.input`
   }
 `;
 
+//Component for textfield
 function TextField({ children, ...rest }) {
   return <StyledTextField {...rest}>{children}</StyledTextField>;
 }

@@ -1,7 +1,15 @@
+// Anton Otaner , 1930028
+// Friday , May 7
+// R. Vincent , instructor
+// Final Project
+
+//Packages
 import styled from "styled-components";
 
+//Components
 import Text from "./Text";
 
+//Styling of rating container
 const RatingContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -12,8 +20,11 @@ const RatingContainer = styled.div`
   margin: ${({ margin }) => margin && margin};
 `;
 
+//Rating component needing type of rating (1,2,3), width of component, margin of component, and text inside component
 function Rating({ type, width, margin, text }) {
-  let color = "";
+  let color = ""; //color based on rating
+
+  // set color based on the input "type"
   if (type === 1) {
     color = "var(--positive)";
   } else if (type === 2) {

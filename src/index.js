@@ -1,3 +1,8 @@
+// Anton Otaner , 1930028
+// Friday , May 7
+// R. Vincent , instructor
+// Final Project
+
 //Packages
 import React from "react";
 import ReactDOM from "react-dom";
